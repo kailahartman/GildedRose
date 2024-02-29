@@ -43,5 +43,37 @@ class GildedRoseTest extends TestCase
         $this->assertEquals($items[0]->sellIn, -29);
         $this->assertEquals($items[0]->quality, 50);
     }
-
+    public function testAgedBrieAfterSellInDate(): void    
+    {
+        $items = [new Item('Aged Brie', -5, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals($items[0]->sellIn, -6);
+        $this->assertEquals($items[0]->quality, 12);
+    }
+    public function testAgedBrieNearMaximumQuality(): void    
+    {
+        $items = [new Item('Aged Brie', 0, 49)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals($items[0]->sellIn, -1);
+        $this->assertEquals($items[0]->quality, 50);
+    }
+    public function BackstagePassesBeforeSellInDate(): void    
+    {
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 10, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals($items[0]->sellIn, 9);
+        $this->assertEquals($items[0]->quality, 12);
+    }
+    public function BackstagePassesMoreThan10DaysBeforeSellInDate(): void    
+    {
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 11, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertEquals($items[0]->sellIn, 10);
+        $this->assertEquals($items[0]->quality, 11);
+    }
+    
 }
