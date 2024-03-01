@@ -39,6 +39,10 @@ final class GildedRose
                 {
                     if ($item->name === 'Aged Brie') 
                     {
+                        if ($item->sellIn < 1 and $item->quality < 50)
+                        {
+                            $item->quality = $item->quality + 1;
+                        }
                         if ($item->quality < 50) 
                         {
                             $item->quality = $item->quality + 1;
@@ -63,21 +67,10 @@ final class GildedRose
                 $item->sellIn = $item->sellIn - 1;
                 if ($item->sellIn < 0) 
                 {
-                    if ($item->name == 'Aged Brie') 
+                    if ($item->name == 'Backstage passes to a TAFKAL80ETC concert')
                     {
-                        if ($item->quality < 50) 
-                        {
-                            $item->quality = $item->quality + 1;
-                        }
+                        $item->quality = 0;
                     } 
-                    else 
-                    {
-                        if ($item->name == 'Backstage passes to a TAFKAL80ETC concert')
-                        {
-                            $item->quality = 0;
-                        }
-                        
-                    }
                 }
             }
         }
