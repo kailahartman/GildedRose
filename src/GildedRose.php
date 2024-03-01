@@ -18,7 +18,7 @@ final class GildedRose
     {
         foreach ($this->items as $item) 
         {
-            $item->sellIn = $item->sellIn - 1;
+            $item->sellIn--;
             $this->updateItem($item);      
         }
     }
@@ -52,11 +52,11 @@ final class GildedRose
     {
         if ($item->sellIn < 0 and $item->quality < 50)
         {
-            $item->quality = $item->quality + 1;
+            $item->quality++;
         }
         if ($item->quality < 50) 
         {
-            $item->quality = $item->quality + 1;
+            $item->quality++;
         }
     }
 
@@ -64,14 +64,14 @@ final class GildedRose
     {
         if ($item->quality < 50) 
         {
-            $item->quality = $item->quality + 1;
+            $item->quality++;
             if ($item->sellIn < 10) 
             {
-                $item->quality = $item->quality + 1;  
+                $item->quality++;  
             }
             if ($item->sellIn < 5) 
             {
-                $item->quality = $item->quality + 1;
+                $item->quality++;
             }
         }
         if ($item->sellIn < 0)
@@ -82,7 +82,7 @@ final class GildedRose
 
     public function updateSulfuras(Item $item): void
     {
-        $item->sellIn = $item->sellIn + 1;
+        $item->sellIn++;
     }
 
     public function updateDefault(Item $item): void
@@ -91,9 +91,9 @@ final class GildedRose
                 {
                     if ($item->sellIn < 0)
                     {
-                        $item->quality = $item->quality - 1;
+                        $item->quality--;
                     }
-                    $item->quality = $item->quality - 1;
+                    $item->quality--;
                 }
     }
 
