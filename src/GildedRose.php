@@ -23,45 +23,70 @@ final class GildedRose
             {
                 case ('Sulfuras, Hand of Ragnaros'):
                 {
-                    $item->sellIn = $item->sellIn + 1;
+                    $this->updateSulfuras($item);
                     break;
                 }
                 case ('Aged Brie'):
-                    {
-                        if ($item->sellIn < 0 and $item->quality < 50)
-                        {
-                            $item->quality = $item->quality + 1;
-                        }
-                        if ($item->quality < 50) 
-                        {
-                            $item->quality = $item->quality + 1;
-                        }
-                        break;
-                    }
+                {
+                    $this->updateAgedBrie($item);
+                    break;
+                }
                 case ('Backstage passes to a TAFKAL80ETC concert'):
                 {
-                    if ($item->quality < 50) 
-                    {
-                        $item->quality = $item->quality + 1;
-                        if ($item->sellIn < 10) 
-                        {
-                            $item->quality = $item->quality + 1;  
-                        }
-                        if ($item->sellIn < 5) 
-                        {
-                            $item->quality = $item->quality + 1;
-                        }
-                    }
-                    if ($item->sellIn < 0)
-                    {
-                        $item->quality = 0;
-                    }
+                    $this->updateBackstage($item);
                     break;
                 } 
  
                 default:
                 {
-                    if ($item->quality > 0) 
+                    $this->updateDefault($item);
+                }
+            }
+                
+                
+            }
+        }
+
+        public function updateAgedBrie(Item $item): void
+        {
+            if ($item->sellIn < 0 and $item->quality < 50)
+            {
+                $item->quality = $item->quality + 1;
+            }
+            if ($item->quality < 50) 
+            {
+                $item->quality = $item->quality + 1;
+            }
+        }
+
+        public function updateBackstage(Item $item): void
+        {
+            if ($item->quality < 50) 
+            {
+                $item->quality = $item->quality + 1;
+                if ($item->sellIn < 10) 
+                {
+                    $item->quality = $item->quality + 1;  
+                }
+                if ($item->sellIn < 5) 
+                {
+                    $item->quality = $item->quality + 1;
+                }
+            }
+            if ($item->sellIn < 0)
+            {
+                $item->quality = 0;
+            }
+        }
+
+        public function updateSulfuras(Item $item): void
+        {
+            $item->sellIn = $item->sellIn + 1;
+        }
+        
+        public function updateDefault(Item $item): void
+        {
+            if ($item->quality > 0) 
                     {
                         if ($item->sellIn < 0)
                         {
@@ -69,12 +94,7 @@ final class GildedRose
                         }
                         $item->quality = $item->quality - 1;
                     }
-                }
-            }
-                
-                
-            }
         }
-    
+
     }
 
