@@ -41,7 +41,11 @@ final class GildedRose
                     $this->updateBackstage($item);
                     break;
                 } 
- 
+                case ('Conjred Mana Cake'):
+                    {
+                        $this->updateConjred($item);
+                        break;
+                    } 
                 default:
                 {
                     $this->updateDefault($item);
@@ -84,7 +88,17 @@ final class GildedRose
     {
         $item->sellIn++;
     }
-
+    public function updateConjred(Item $item): void
+    {
+        if ($item->quality > 0) 
+                {
+                    if ($item->sellIn < 0)
+                    {
+                        $item->quality=$item->quality-2;
+                    }
+                    $item->quality=$item->quality-2;
+                }
+    }
     public function updateDefault(Item $item): void
     {
         if ($item->quality > 0) 
