@@ -62,16 +62,14 @@ final class GildedRose
                                 $item->quality = $item->quality + 1;
                             }
                         }
+                        if ($item->sellIn < 1)
+                        {
+                            $item->quality = 0;
+                        }
                     }
                 }
                 $item->sellIn = $item->sellIn - 1;
-                if ($item->sellIn < 0) 
-                {
-                    if ($item->name == 'Backstage passes to a TAFKAL80ETC concert')
-                    {
-                        $item->quality = 0;
-                    } 
-                }
+                
             }
         }
     
