@@ -9,13 +9,15 @@ final class GildedRose
     /**
      * @param Item[] $items
      */
-    public function __construct(
-        private array $items
-    ) {
-    }
+    public function __construct(private array $items) 
+    {    }
 
     public function updateQuality(): void
     {
+        if (empty($this->items)) 
+        {
+            return;
+        }
         foreach ($this->items as $item) 
         {
             $item->sellIn--;
