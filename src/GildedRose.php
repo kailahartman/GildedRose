@@ -90,15 +90,16 @@ final class GildedRose
 
     public function updateDefault(Item $item): void
     {
-        if ($item->quality > 0) 
-                {
-                    if ($item->sellIn < 0)
-                    {
-                        $item->quality--;
-                    }
-                    $item->quality--;
-                }
+        if ($item->quality > 0 && $item->sellIn < 0) 
+        {
+            $item->quality -= 2;
+        } 
+        elseif ($item->quality > 0) 
+        {
+            $item->quality -= 1;
+        }
     }
+    
 
     }
 
