@@ -66,22 +66,13 @@ final class GildedRose
 
     public function updateBackstage(Item $item): void
     {
-        if ($item->quality < 50) 
-        {
-            $item->quality++;
-            if ($item->sellIn < 10) 
-            {
-                $item->quality++;  
-            }
-            if ($item->sellIn < 5) 
-            {
-                $item->quality++;
-            }
+        if ($item->quality < 50 && $item->sellIn >= 0) {
+            $item->quality += ($item->sellIn < 5) ? 3 : (($item->sellIn < 10) ? 2 : 1);
         }
-        if ($item->sellIn < 0)
-        {
+        elseif ($item->sellIn < 0) {
             $item->quality = 0;
         }
+        
     }
 
     public function updateSulfuras(Item $item): void
