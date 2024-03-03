@@ -81,15 +81,13 @@ final class GildedRose
     }
     public function updateConjred(Item $item): void
     {
-        if ($item->quality > 0) 
-                {
-                    if ($item->sellIn < 0)
-                    {
-                        $item->quality=$item->quality-2;
-                    }
-                    $item->quality=$item->quality-2;
-                }
+        if ($item->quality > 0 && $item->sellIn < 0) {
+            $item->quality -= 4;
+        } elseif ($item->quality > 0) {
+            $item->quality -= 2;
+        }
     }
+
     public function updateDefault(Item $item): void
     {
         if ($item->quality > 0) 
