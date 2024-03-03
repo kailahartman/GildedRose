@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
+// declare(strict_types=1);
 
-namespace Tests;
+// namespace Tests;
 
-use ApprovalTests\Approvals;
-use GildedRose\GildedRose;
-use GildedRose\Item;
-use PHPUnit\Framework\TestCase;
+// use ApprovalTests\Approvals;
+// use GildedRose\GildedRose;
+// use GildedRose\Item;
+// use PHPUnit\Framework\TestCase;
 
 /**
  * This unit test uses [Approvals](https://github.com/approvals/ApprovalTests.php).

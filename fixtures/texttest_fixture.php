@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$autoloadPath = './vendor/autoload.php';
+require_once $autoloadPath;
 
 use GildedRose\GildedRose;
 use GildedRose\Item;
